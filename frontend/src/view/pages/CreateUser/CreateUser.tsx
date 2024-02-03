@@ -12,7 +12,7 @@ import React, { Component, ChangeEvent, FormEvent } from "react";
 
 
 
-/*Used Chat GPT to generate this code as I am not familiar with API implementation*/
+/*Used Chat GPT to generate this code as I am not familiar with API implementation  */
 
 
 
