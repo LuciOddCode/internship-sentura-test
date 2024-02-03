@@ -1,27 +1,49 @@
 import React, { Component } from "react";
-import Weavy from "@weavy/client";
-import { WeavyApp } from "@weavy/react";
+import "@weavy/uikit-web/dist/weavy.css";
 
-export class CreateUser extends Component {
-    constructor(props) {
-        super(props);
+class CreateUser extends Component {
+    async createUser() {
+        const weavyServer = "{https://738a955c9df54737b9de48803590bc14.weavy.io}";
+        const apiKey = "{wys_B5CGMIgT7IVCOY5oGk8WJIbAgVgKE92Cb8lY}";
 
-        this.weavy = new Weavy({
-            jwt: "YOUR_JWT_TOKEN",
-        });
+        const userPayload = {
+            uid: "user-1",
+            name: "John Doe",
+            directory: "acme",
+        };
 
-        this.space = this.weavy.space({ key: "wys_B5CGMIgT7IVCOY5oGk8WJIbAgVgKE92Cb8lY" });
-        this.app = this.space.app({ key: "my-app", type: "posts" });
+        try {
+            const response = await fetch(`${weavyServer}/api/users`, {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${apiKey}`,
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(userPayload),
+            });
+
+            if (response.status === 201) {
+                const userData = await response.json();
+                console.log("User created successfully:", userData);
+
+            } else {
+                console.error("Error creating user:", response.statusText);
+
+            }
+        } catch (error) {
+            console.error("Error:", error);
+
+        }
+    }
+
+    componentDidMount() {
+
+        this.createUser();
     }
 
     render() {
-        return (
-            <WeavyApp
-                weavy={this.weavy}
-                spaceKey="my-space"
-                appKey="my-app"
-                appType="posts"
-            />
-        );
+        return <></>;
     }
 }
+
+export default CreateUser;

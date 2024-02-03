@@ -1,25 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {DefaultLayout} from "./view/common/DefaultLayout/DefaultLayout";
+import {CreateUser} from "./view/pages/CreateUser/CreateUser";
+import {ListUser} from "./view/pages/ListUser/ListUser";
+import {GetUserDetails} from "./view/pages/GetUserDetails/GetUserDetails";
+import {UpdateUser} from "./view/pages/UpdateUser/UpdateUser";
+import {DeleteUser} from "./view/pages/DeleteUser/DeleteUser";
+import "./index.css";
+
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/*" Component={DefaultLayout}/>
+          <Route path="/create" Component={CreateUser}/>
+          <Route path="/list" Component={ListUser}/>
+          <Route path="/get" Component={GetUserDetails}/>
+          <Route path="/update" Component={UpdateUser}/>
+          <Route path="/delete" Component={DeleteUser}/>
+        </Routes>
+   </BrowserRouter>
   );
 }
 

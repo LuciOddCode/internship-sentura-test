@@ -2,7 +2,7 @@ import {Component} from "react";
 import { Weavy, WyChat } from "@weavy/uikit-web";
 
 
-export class CreateUser extends Component {
+export class GetUserDetails extends Component {
     render() {
 
         const weavy = new Weavy();
