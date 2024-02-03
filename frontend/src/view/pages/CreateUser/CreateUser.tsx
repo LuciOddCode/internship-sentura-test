@@ -1,12 +1,38 @@
-import React, { Component } from "react";
-import "@weavy/uikit-web/dist/weavy.css";
+import React, { Component, ChangeEvent, FormEvent } from "react";
 
-interface PropsCreateUser {
 
+
+
+
+
+
+
+
+
+
+
+
+/*Used Chat GPT to generate this code as I am not familiar with API implementation*/
+
+
+
+
+
+
+
+
+
+
+
+
+interface StateCreateUser {
+    uid: string;
+    name: string;
+    directory: string;
 }
 
-class CreateUser extends Component {
-    constructor(props) {
+export class CreateUser extends Component<{}, StateCreateUser> {
+    constructor(props: {}) {
         super(props);
 
         this.state = {
@@ -16,16 +42,16 @@ class CreateUser extends Component {
         };
     }
 
-    handleChange = (event) => {
-        this.setState({ [event.target.name]: event.target.value });
+    handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+        this.setState({ [event.target.name]: event.target.value } as Pick<StateCreateUser, keyof StateCreateUser>);
     };
 
-    handleSubmit = async (event) => {
+    handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         const { uid, name, directory } = this.state;
 
-        // Validate inputs if needed
+
 
         const weavyServer = "{WEAVY-SERVER}";
         const apiKey = "{API-KEY}";
@@ -49,14 +75,14 @@ class CreateUser extends Component {
             if (response.status === 201) {
                 const userData = await response.json();
                 console.log("User created successfully:", userData);
-                // Handle success, update state, or perform other actions
+
             } else {
                 console.error("Error creating user:", response.statusText);
-                // Handle error, show a message, or perform other error handling
+
             }
         } catch (error) {
             console.error("Error:", error);
-            // Handle network errors or other unexpected errors
+
         }
     };
 
@@ -99,4 +125,3 @@ class CreateUser extends Component {
     }
 }
 
-export default CreateUser;

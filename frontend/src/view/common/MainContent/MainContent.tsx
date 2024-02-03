@@ -1,8 +1,6 @@
 import {Component} from "react";
-import "@weavy/uikit-web/dist/weavy.css";
-import { WyMessenger } from "@weavy/uikit-web";
 import {Route, Routes} from "react-router-dom";
-import CreateUser from "../../pages/CreateUser/CreateUser";
+import {CreateUser} from "../../pages/CreateUser/CreateUser";
 import {ListUser} from "../../pages/ListUser/ListUser";
 import {UpdateUser} from "../../pages/UpdateUser/UpdateUser";
 import {DeleteUser} from "../../pages/DeleteUser/DeleteUser";
@@ -27,7 +25,7 @@ export class MainContent extends Component {
                 <div className="flex-1">
 
                     <Routes>
-                        <Route path='/' Component={CreateUser}></Route>
+                        <Route path='/create' Component={CreateUser}></Route>
                         <Route path='/list' Component={ListUser}></Route>
                         <Route path='/update' Component={UpdateUser}></Route>
                         <Route path='/delete' Component={DeleteUser}></Route>
